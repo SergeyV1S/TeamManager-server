@@ -1,10 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { DrizzleAsyncProvider } from 'src/drizzle/drizzle.provider';
+import { DrizzleDataBase } from '@drizzle/types/drizzle';
 
 @Injectable()
 export class UserService {
-  create(createUserDto: CreateUserDto) {
+  constructor(@Inject(DrizzleAsyncProvider) private db: DrizzleDataBase) {}
+
+  createUser(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
   }
 
