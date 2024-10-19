@@ -1,28 +1,28 @@
-import * as dotenv from 'dotenv';
-import { eq } from 'drizzle-orm';
-import { type NodePgDatabase, drizzle } from 'drizzle-orm/node-postgres';
-import { migrate } from 'drizzle-orm/node-postgres/migrator';
-import path from 'path';
-import pg from 'pg';
-import { exit } from 'process';
+import * as dotenv from "dotenv";
+import { eq } from "drizzle-orm";
+import { type NodePgDatabase, drizzle } from "drizzle-orm/node-postgres";
+import { migrate } from "drizzle-orm/node-postgres/migrator";
+import path from "path";
+import pg from "pg";
+import { exit } from "process";
 
-import * as allSchema from './schema';
+import * as allSchema from "./schema";
 
 dotenv.config();
 
 (async () => {
   const pool = new pg.Pool({
-    connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.DATABASE_URL
   });
   let db: NodePgDatabase<typeof allSchema> | null = null;
   db = drizzle(pool, {
     schema: {
-      ...allSchema,
-    },
+      ...allSchema
+    }
   });
 
   // Look for migrations in the src/drizzle/migrations folder
-  const migrationPath = path.join(process.cwd(), 'src/drizzle/migrations');
+  const migrationPath = path.join(process.cwd(), "src/drizzle/migrations");
 
   // Run the migrations
   await migrate(db, { migrationsFolder: migrationPath });
@@ -39,6 +39,6 @@ dotenv.config();
   //     await db?.insert(allSchema.user_role).values({ name: role });
   //   }
   // }
-  console.log('Migration complete');
+  console.log("Migration complete");
   exit(0);
 })();

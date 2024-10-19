@@ -1,7 +1,7 @@
-import { env } from './env';
+import { env } from "./env";
 
 export const dbConfig = {
   postgres: {
-    url: env.DATABASE_URL,
-  },
+    url: env.DATABASE_URL
+  }
 };

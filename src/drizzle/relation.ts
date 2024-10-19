@@ -1,4 +1,4 @@
-import { relations } from 'drizzle-orm';
+import { relations } from "drizzle-orm";
 
 // export const usersRelations = relations(users, ({ one }) => ({
 //   user_role: one(user_role, {

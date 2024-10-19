@@ -1,7 +1,7 @@
-import { integer, serial, text, pgTable, uuid } from 'drizzle-orm/pg-core';
-import { relations } from 'drizzle-orm';
+import { integer, serial, text, pgTable, uuid } from "drizzle-orm/pg-core";
+import { relations } from "drizzle-orm";
 
-import { userSchema } from '../modules/user/schema/user.schema';
+import { userSchema } from "../modules/user/schema/user.schema";
 
 export { userSchema };
 // export const user_role = pgTable('user_role', {
